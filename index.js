@@ -1,13 +1,13 @@
 const parser = require('rss-url-parser');
+const fs = require('fs');
 
-const run = async function (req, res) {
+const jobsArray = async function (req, res) {
 	try {
 		const xml = await parser(
 			'https://burzarada.hzz.hr/rss/rsskat1013.xml?AspxAutoDetectCookieSupport=1'
 		);
 
-		const poslovi = xml.map((item) => {
-			//  console.log("item ++",JSON.stringify(item))
+		const poslovi = xml.map((item, index) => {
 			const a = {
 				title: item.title,
 
@@ -16,7 +16,7 @@ const run = async function (req, res) {
 				pubDate: item.pubDate,
 				link: item.link,
 			};
-			console.log('----a  ++', JSON.stringify(a));
+			console.log(`\n----new job ${index} \n\n `, JSON.stringify(a));
 			return a;
 		});
 
@@ -26,4 +26,13 @@ const run = async function (req, res) {
 		return null;
 	}
 };
-run();
+
+///RUN THE FUNC
+///
+(async () => {
+	const fileName = 'burza.json';
+	const jobsToFS = await jobsArray();
+	const stringifiedJobsToFs = JSON.stringify(jobsToFS);
+	fs.writeFileSync(fileName, stringifiedJobsToFs);
+	console.log(`\n${fileName} - created \n\n total length ${jobsToFS.length} `);
+})();
