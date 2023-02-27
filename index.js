@@ -1,6 +1,6 @@
 const parser = require('rss-url-parser');
 
-module.exports = async function (req, res) {
+const run = async function (req, res) {
 	try {
 		const xml = await parser(
 			'https://burzarada.hzz.hr/rss/rsskat1013.xml?AspxAutoDetectCookieSupport=1'
@@ -26,3 +26,4 @@ module.exports = async function (req, res) {
 		return null;
 	}
 };
+run();

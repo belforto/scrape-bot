@@ -20,7 +20,8 @@ puppeteer.use(StealthPlugin());
 	const whereToGO = `https://whatismycountry.com`;
 
 	const browser = await puppeteer.launch({
-		// args: ['--proxy-server=socks4://96.9.77.192:55796'],
+		args: ['--proxy-server=socks4://96.9.77.192:55796'],
+
 		headless: false,
 		dumpio: true,
 		defaultViewport: {
