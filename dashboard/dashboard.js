@@ -4,6 +4,7 @@ const path = require('path');
 const router = express.Router();
 const fs = require('fs');
 const mustacheExpress = require('mustache-express');
+
 router.get('/', function (req, res) {
 	const filenames = fs
 		.readdirSync('../data', { withFileTypes: true })

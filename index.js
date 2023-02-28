@@ -8,6 +8,7 @@ const jobsArray = async function (req, res) {
 		);
 
 		const poslovi = xml.map((item, index) => {
+			console.log('item: ', item);
 			const a = {
 				title: item.title,
 
@@ -16,7 +17,7 @@ const jobsArray = async function (req, res) {
 				pubDate: item.pubDate,
 				link: item.link,
 			};
-			console.log(`\n----new job ${index} \n\n `, JSON.stringify(a));
+			// console.log(`\n----new job ${index} \n\n `, JSON.stringify(a));
 			return a;
 		});
 
