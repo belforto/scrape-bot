@@ -30,9 +30,14 @@ const jobsArray = async function (req, res) {
 ///RUN THE FUNC
 ///
 (async () => {
-	const fileName = 'burza.json';
+	const nameOfScrapingSource = 'burza';
+
+	const date = new Date().toLocaleString().replaceAll('/', '-');
 	const jobsToFS = await jobsArray();
 	const stringifiedJobsToFs = JSON.stringify(jobsToFS);
-	fs.writeFileSync(fileName, stringifiedJobsToFs);
+	const fileName = `${nameOfScrapingSource}-${date}-${jobsToFS.length}-job.json`;
+
+	fs.writeFileSync('./data/' + fileName, stringifiedJobsToFs);
+
 	console.log(`\n${fileName} - created \n\n total length ${jobsToFS.length} `);
 })();
